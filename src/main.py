@@ -25,3 +25,12 @@ class CampoMinado:
                 self.tabuleiro[x][y] = -1
                 bombas_adicionadas += 1
    
+    def verificar_dimensoes(self):
+        if self.linhas < 8 or self.colunas < 8 or self.linhas > 64 or self.colunas > 64:
+            raise ValueError("As dimensões do tabuleiro estao incorretas")
+   
+    def criar_interface(self):
+        for x in range(self.linhas):
+            for y in range(self.colunas):
+                self.botoes[x][y] = tk.Button(self.root, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))
+                self.botoes[x][y].grid(row=x, column=y)

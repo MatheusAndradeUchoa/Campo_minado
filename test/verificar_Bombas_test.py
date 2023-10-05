@@ -1,5 +1,5 @@
 import pytest
-from main import CampoMinado  
+from src.main import CampoMinado  
 
 def test_verificar_bombas_facil():
     root = None

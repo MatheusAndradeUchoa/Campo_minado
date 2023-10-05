@@ -1,5 +1,5 @@
 import pytest
-from main import CampoMinado  
+from src.main import CampoMinado  
 
 def test_game_over_no_interface():
     # Criar uma instância de CampoMinado com dimensões 8x8 e 1 bomba

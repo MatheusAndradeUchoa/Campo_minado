@@ -1,5 +1,5 @@
 import pytest
-from main import CampoMinado  
+from src.main import CampoMinado  
 
 def test_verificar_vitoria():
     # Crie uma instância de CampoMinado com dimensões 4x4 e 4 bombas

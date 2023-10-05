@@ -1,5 +1,5 @@
 import pytest
-from main import CampoMinado  
+from src.main import CampoMinado  
 
 
 def test_criar_tabuleiro_facil():

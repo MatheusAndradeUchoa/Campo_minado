@@ -24,7 +24,7 @@ class CampoMinado:
             if self.tabuleiro[x][y] != -1:
                 self.tabuleiro[x][y] = -1
                 bombas_adicionadas += 1
-   
+                 
     def verificar_dimensoes(self):
         if self.linhas < 8 or self.colunas < 8 or self.linhas > 64 or self.colunas > 64:
             raise ValueError("As dimensões do tabuleiro estao incorretas")

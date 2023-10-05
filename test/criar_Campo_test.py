@@ -3,11 +3,8 @@ from main import CampoMinado
 
 
 def test_criar_tabuleiro_facil():
-    root = None
-    linhas = 8
-    colunas = 8
-    num_bombas = 10
-    campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
+   
+    campo_minado = CampoMinado(None, 8, 8, 10)
     
     # Verifica se o tabuleiro foi criado corretamente
     assert len(campo_minado.tabuleiro) == linhas

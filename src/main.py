@@ -153,7 +153,6 @@ class Jogo:
             widget.destroy()
 
         self.jogo = CampoMinado(self.root, linhas, colunas, bombas)
-        self.root.geometry(f"{colunas*30}x{linhas*30}")
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
 

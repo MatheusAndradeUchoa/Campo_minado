@@ -34,7 +34,47 @@ class CampoMinado:
             for y in range(self.colunas):
                 self.botoes[x][y] = tk.Button(self.root, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))
                 self.botoes[x][y].grid(row=x, column=y)
+                self.botoes[x][y].bind('<Button-1>', lambda event, x=x, y=y: self.on_left_click(x, y))
+                self.botoes[x][y].bind('<Button-3>', lambda event, x=x, y=y: self.on_right_click(x, y))
+        restart_button = tk.Button(self.root, text="Reiniciar Jogo", command=self.reiniciar_jogo)
+        exit_button = tk.Button(self.root, text="Sair", command=self.root.quit)
+        
+         # Posicionando os botões abaixo do tabuleiro
+        restart_button.grid(row=self.linhas, column=0, columnspan=self.colunas // 2, sticky="nsew")
+        exit_button.grid(row=self.linhas, column=self.colunas // 2, columnspan=self.colunas // 2, sticky="nsew")
+        
+    
+    def reiniciar_jogo(self):
+        self.root.destroy()
+        root = tk.Tk()
+        jogo = Jogo(root)
+        root.mainloop()
+
+       
+
+    def revelar_adjacentes(self, x, y):
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                novo_x, novo_y = x + i, y + j
+                if 0 <= novo_x < self.linhas and 0 <= novo_y < self.colunas:
+                    if self.botoes[novo_x][novo_y]['state'] != 'disabled':
+                        self.revelar_celula(novo_x, novo_y)
+
+
+    def on_left_click(self, x, y):
+        if self.root.state() == 'normal':
+            self.revelar_celula(x, y)
+
+    def on_right_click(self, x, y):
+        if self.root.state() == 'normal':
+            self.adicionar_bandeira(x, y)
                 
+    def on_button_click(self, x, y):
+        # Esta função será chamada quando um botão for clicado (esquerdo ou direito)
+        # Dependendo do botão, chama revelar_celula ou adicionar_bandeira
+        if self.root.state() == 'normal':
+            self.revelar_celula(x, y)
+
     def revelar_celula(self, x, y):
         if self.tabuleiro[x][y] == -1:
             self.game_over()

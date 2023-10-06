@@ -42,9 +42,18 @@ class CampoMinado:
             vizinhos = self.calcular_vizinhos(x, y)
             self.botoes[x][y]['text'] = str(vizinhos)
             self.botoes[x][y]['state'] = 'disabled'
-            # Após revelar uma célula, verificamos se o jogador venceu
+
+            if vizinhos == 0:
+                self.revelar_adjacentes(x, y)
+
             if self.verificar_vitoria():
                 self.vitoria()
+
+    def adicionar_bandeira(self, x, y):
+        if self.botoes[x][y]['text'] == '':
+            self.botoes[x][y]['text'] = 'F'
+        elif self.botoes[x][y]['text'] == 'F':
+            self.botoes[x][y]['text'] = ''
                 
     def calcular_vizinhos(self, x, y):
         bomb_count = 0
@@ -80,11 +89,10 @@ class CampoMinado:
         if mostrar_interface:
             user_choice = messagebox.askquestion("Fim de Jogo", "Você perdeu!\nDeseja jogar novamente ou sair?")
             if user_choice == 'yes':
-                self.root.destroy()  # Fecha a janela atual e voltará para a tela de escolha de níveis
+                self.reiniciar_jogo()
             else:
-                self.root.destroy()  # Fecha a janela e encerra o jogo
+                self.root.destroy()
 
-   
 class Jogo:
     def __init__(self, root):
         self.root = root
@@ -107,6 +115,7 @@ class Jogo:
         self.jogo = CampoMinado(self.root, linhas, colunas, bombas)
         self.root.geometry(f"{colunas*30}x{linhas*30}")
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
+
 
     def on_close(self):
         user_choice = messagebox.askquestion("Sair", "Deseja sair do jogo?")

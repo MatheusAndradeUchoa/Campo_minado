@@ -37,11 +37,11 @@ class CampoMinado:
                 self.botoes[x][y].bind('<Button-1>', lambda event, x=x, y=y: self.on_left_click(x, y))
                 self.botoes[x][y].bind('<Button-3>', lambda event, x=x, y=y: self.on_right_click(x, y))
         restart_button = tk.Button(self.root, text="Reiniciar Jogo", command=self.reiniciar_jogo)
-        exit_button = tk.Button(self.root, text="Sair", command=self.root.quit)
         
-         # Posicionando os botões abaixo do tabuleiro
         restart_button.grid(row=self.linhas, column=0, columnspan=self.colunas // 2, sticky="nsew")
-        exit_button.grid(row=self.linhas, column=self.colunas // 2, columnspan=self.colunas // 2, sticky="nsew")
+        if self.root:
+            exit_button = tk.Button(self.root, text="Sair", command=self.root.quit)
+            exit_button.grid(row=self.linhas, column=self.colunas // 2, columnspan=self.colunas // 2, sticky="nsew")
         
     
     def reiniciar_jogo(self):
@@ -161,7 +161,13 @@ class Jogo:
         if user_choice == 'yes':
             self.root.destroy()
         else:
-            self.mostrar_tela_inicial()
+            self.reiniciar_jogo() 
+            
+    def reiniciar_jogo(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        self.criar_tabuleiro()
 
     def ver_historico(self):
         messagebox.showinfo("Histórico de Resultados", "Aqui está o histórico de resultados:\n\n"

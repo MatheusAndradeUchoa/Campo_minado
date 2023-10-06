@@ -64,8 +64,11 @@ class CampoMinado:
         return True
 
     def vitoria(self):
-        messagebox.showinfo("Parabéns!", "Você venceu o jogo!")
-        self.root.destroy()
+        user_choice = messagebox.askquestion("Parabéns!", "Você venceu o jogo! Quer jogar novamente?")
+        if user_choice == 'yes':
+            self.reiniciar_jogo()
+        else:
+            self.root.destroy()
         
     def game_over(self, mostrar_interface=True):
         for x in range(self.linhas):

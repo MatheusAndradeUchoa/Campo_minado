@@ -63,8 +63,8 @@ def test_calcular_vizinhos_canto_inferior__esquerdo_com_bombas():
 def test_calcular_vizinhos_dificil_com_bombas(posicao, bomb_positions, expected_vizinhos):
     campo_minado = CampoMinado(None, 24, 24, 0)
     posicionar_bombas(campo_minado, bomb_positions)
-    vizinhos = campo_minado.calcular_vizinhos(7,0)  
-    assert vizinhos == 2
+    vizinhos = campo_minado.calcular_vizinhos(*posicao)
+    assert vizinhos == expected_vizinhos
 
 def test_calcular_vizinhos_centro_com_bombas():
     bomb_positions = [(3, 3), (3, 4), (3, 5), (4, 3), (4, 5), (5, 3), (5, 4), (5, 5)]  

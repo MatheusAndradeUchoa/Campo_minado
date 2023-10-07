@@ -13,35 +13,16 @@ def test_calcular_vizinhos_canto_superior_esquerdo_sem_bombas():
     
 def test_calcular_vizinhos_canto_superior_direito_sem_bombas():
 
-    vizinhos = campo_minado.calcular_vizinhos(0, 7)  
-    assert vizinhos == 0
-
-def test_calcular_vizinhos_canto_inferior__esquerdo_sem_bombas():
-    
-    vizinhos = campo_minado.calcular_vizinhos(7,0)  
-    assert vizinhos == 0
-
-def test_calcular_vizinhos_canto_inferior_direito_sem_bombas():
-    
-    vizinhos = campo_minado.calcular_vizinhos(7,0)  
-    assert vizinhos == 0
-
-def test_calcular_vizinhos_centro_sem_bombas():
-    
-    vizinhos = campo_minado.calcular_vizinhos(4, 4)
-    assert vizinhos == 0
-
-
-
-def test_calcular_vizinhos_canto_superior_esquerdo_com_bombas():
-    bomb_positions = [(0, 1), (1, 0), (1, 1)] 
-    posicionar_bombas(campo_minado, bomb_positions)
-    vizinhos = campo_minado.calcular_vizinhos(0, 0)
-    assert vizinhos == 3 
-
-def test_calcular_vizinhos_canto_superior_direito_com_bombas():
-   
-    bomb_positions = [(0, 7), (1, 7)] 
+#Test para calcular vizinhos nos cantos e no centro do tabuleiro
+#Modo Facil
+@pytest.mark.parametrize("posicao, bomb_positions, expected_vizinhos", [
+    ((0, 0), [(0, 1), (1, 0), (1, 1)], 3),  # Canto superior esquerdo
+    ((0, 7), [(0, 6), (1, 6), (1, 7)], 3),  # Canto superior direito
+    ((7, 0), [(6, 0), (6, 1), (7, 1)], 3),  # Canto inferior esquerdo
+    ((7, 7), [(6, 6), (6, 7), (7, 6)], 3),  # Canto inferior direito
+    ((4, 4), [(3, 3), (3, 4), (3, 5), (4, 3), (4, 5), (5, 3), (5, 4), (5, 5)], 8)  # algum lugar no centro
+])
+def test_calcular_vizinhos_com_bombas(posicao, bomb_positions, expected_vizinhos): 
     posicionar_bombas(campo_minado, bomb_positions)
     vizinhos = campo_minado.calcular_vizinhos(0, 7)  
     assert vizinhos == 2
@@ -57,8 +38,8 @@ def test_calcular_vizinhos_canto_superior_direito_com_bombas():
 def test_calcular_vizinhos_intermediario_com_bombas(posicao, bomb_positions, expected_vizinhos):
     campo_minado = CampoMinado(None, 10, 16, 0)
     posicionar_bombas(campo_minado, bomb_positions)
-    vizinhos = campo_minado.calcular_vizinhos(7,0)  
-    assert vizinhos == 2
+    vizinhos = campo_minado.calcular_vizinhos(*posicao)
+    assert vizinhos == expected_vizinhos
     
 #modo Dificil
 @pytest.mark.parametrize("posicao, bomb_positions, expected_vizinhos", [

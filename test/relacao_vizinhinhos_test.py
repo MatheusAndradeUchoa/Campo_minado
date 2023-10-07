@@ -25,11 +25,18 @@ def test_calcular_vizinhos_canto_superior_direito_com_bombas():
     vizinhos = campo_minado.calcular_vizinhos(0, 7)  
     assert vizinhos == 2
 
-def test_calcular_vizinhos_canto_inferior_com_bombas():
+def test_calcular_vizinhos_canto_inferior__esquerdo_com_bombas():
     campo_minado = CampoMinado(None, 8, 8, 0)
-    bomb_positions = [(0, 7), (1, 7)]  
+    bomb_positions = [(7, 1), (6, 0)]  
     posicionar_bombas(campo_minado, bomb_positions)
-    vizinhos = campo_minado.calcular_vizinhos(0, 7)  
+    vizinhos = campo_minado.calcular_vizinhos(7,0)  
+    assert vizinhos == 2
+    
+def test_calcular_vizinhos_canto_inferior_direito_com_bombas():
+    campo_minado = CampoMinado(None, 8, 8, 0)
+    bomb_positions = [(7, 1), (6, 0)]  
+    posicionar_bombas(campo_minado, bomb_positions)
+    vizinhos = campo_minado.calcular_vizinhos(7,0)  
     assert vizinhos == 2
 
 

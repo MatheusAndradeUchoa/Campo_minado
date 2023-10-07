@@ -46,8 +46,16 @@ def test_calcular_vizinhos_canto_superior_direito_com_bombas():
     vizinhos = campo_minado.calcular_vizinhos(0, 7)  
     assert vizinhos == 2
 
-def test_calcular_vizinhos_canto_inferior__esquerdo_com_bombas():
-    bomb_positions = [(7, 1), (6, 0)]  
+#Modo Intermediario
+@pytest.mark.parametrize("posicao, bomb_positions, expected_vizinhos", [
+    ((0, 0), [(0, 1), (1, 0), (1, 1)], 3),  # Canto superior esquerdo
+    ((0, 15), [(0, 14), (1, 14), (1, 15)], 3),  # Canto superior direito
+    ((9, 0), [(8, 0), (8, 1), (9, 1)], 3),  # Canto inferior esquerdo
+    ((9, 15), [(8, 14), (8, 15), (9, 14)], 3),  # Canto inferior direito
+    ((5, 7), [(4, 6), (4, 7), (4, 8), (5, 6), (5, 8), (6, 6), (6, 7), (6, 8)], 8) #não tenho ideia de onde ta mas deve ta perto do centro(muito grande)
+])
+def test_calcular_vizinhos_intermediario_com_bombas(posicao, bomb_positions, expected_vizinhos):
+    campo_minado = CampoMinado(None, 10, 16, 0)
     posicionar_bombas(campo_minado, bomb_positions)
     vizinhos = campo_minado.calcular_vizinhos(7,0)  
     assert vizinhos == 2

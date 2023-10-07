@@ -16,6 +16,11 @@ def test_calcular_vizinhos_canto_superior_direito_sem_bombas():
     vizinhos = campo_minado.calcular_vizinhos(0, 7)  
     assert vizinhos == 0
 
+def test_calcular_vizinhos_canto_inferior__esquerdo_sem_bombas():
+    campo_minado = CampoMinado(None, 8, 8, 0)
+    vizinhos = campo_minado.calcular_vizinhos(7,0)  
+    assert vizinhos == 0
+
 
 
 def test_calcular_vizinhos_canto_superior_esquerdo_com_bombas():

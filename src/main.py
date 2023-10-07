@@ -70,8 +70,6 @@ class CampoMinado:
             self.adicionar_bandeira(x, y)
                 
     def on_button_click(self, x, y):
-        # Esta função será chamada quando um botão for clicado (esquerdo ou direito)
-        # Dependendo do botão, chama revelar_celula ou adicionar_bandeira
         if self.root.state() == 'normal':
             self.revelar_celula(x, y)
 

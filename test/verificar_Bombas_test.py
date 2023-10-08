@@ -20,8 +20,8 @@ def test_verificar_bombas_intermediario():
     campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
 
     # Verifica se o número correto de bombas foi adicionado
-    bomb_count = sum(row.count(-1) for row in campo_minado.tabuleiro)
-    assert bomb_count == num_bombas
+    contador_de_bomba = sum(row.count(-1) for row in campo_minado.tabuleiro)
+    assert contador_de_bomba == num_bombas
 
 def test_verificar_bombas_dificil():
     root = None
@@ -31,10 +31,11 @@ def test_verificar_bombas_dificil():
     campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
 
     # Verifica se o número correto de bombas foi adicionado
-    bomb_count = sum(row.count(-1) for row in campo_minado.tabuleiro)
-    assert bomb_count == num_bombas
-    
-@pytest.mark.parametrize("bomb_positions", [
+    contador_de_bomba = sum(row.count(-1) for row in campo_minado.tabuleiro)
+    assert contador_de_bomba == num_bombas
+
+#modo FAcil    
+@pytest.mark.parametrize("posicao_bombas", [
     [(0, 0), (1, 1), (2, 2), (3, 3)],
     [(2, 3), (4, 5), (6, 7), (1, 7)],
     [(0, 1), (2, 4), (5, 3), (6, 6)],
@@ -42,11 +43,47 @@ def test_verificar_bombas_dificil():
     [(4, 6), (6, 2), (3, 1), (2, 7)],
     [(5, 1), (0, 2), (4, 3), (6, 4)]
     ])
-def test_posicoes_bombas(bomb_positions):
+def test_posicoes_bombas(posicao_bombas):
     campo_minado = CampoMinado(None, 8, 8, 4)
+
+    for x, y in posicao_bombas:
+        campo_minado.tabuleiro[x][y] = -1
+    
+    for x, y in posicao_bombas:
+        assert campo_minado.tabuleiro[x][y] == -1
+        
+#modo Intermediario
+@pytest.mark.parametrize("bomb_positions", [
+    [(0, 0), (1, 1), (2, 2), (3, 3)],
+    [(2, 3), (4, 5), (6, 7), (1, 7)],
+    [(0, 1), (2, 4), (5, 3), (6, 6)],
+    [(1, 2), (3, 5), (7, 7), (0, 5)],
+    [(4, 6), (6, 2), (3, 1), (2, 7)],
+    [(5, 1), (0, 2), (4, 3), (6, 4)]
+    ])      
+def test_posicoes_bombas__modo_intermediario(bomb_positions):
+    campo_minado = CampoMinado(None, 10, 16, 4)
 
     for x, y in bomb_positions:
         campo_minado.tabuleiro[x][y] = -1
     
     for x, y in bomb_positions:
+        assert campo_minado.tabuleiro[x][y] == -1
+        
+#Modo Dificil
+@pytest.mark.parametrize("posicao_bombas", [
+    [(0, 0), (1, 1), (2, 2), (3, 3)],
+    [(2, 3), (4, 5), (6, 7), (1, 7)],
+    [(0, 1), (2, 4), (5, 3), (6, 6)],
+    [(1, 2), (3, 5), (7, 7), (0, 5)],
+    [(4, 6), (6, 2), (3, 1), (2, 7)],
+    [(5, 1), (0, 2), (4, 3), (6, 4)]
+    ])      
+def test_posicoes_bombas__modo_dificil(posicao_bombas):
+    campo_minado = CampoMinado(None, 24, 24, 4)
+
+    for x, y in posicao_bombas:
+        campo_minado.tabuleiro[x][y] = -1
+    
+    for x, y in posicao_bombas:
         assert campo_minado.tabuleiro[x][y] == -1

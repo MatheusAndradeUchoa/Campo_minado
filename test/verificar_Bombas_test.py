@@ -1,7 +1,12 @@
 import pytest
 from src.main import CampoMinado
 
-campo_minado = CampoMinado(None,8,8,0)
+def test_verificar_bombas_facil():
+    root = None
+    linhas = 8
+    colunas = 8
+    num_bombas = 10
+    campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
 
 def posicionar_bombas(campo_minado, bomb_positions):
     for x, y in bomb_positions:

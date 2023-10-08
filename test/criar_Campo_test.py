@@ -1,44 +1,53 @@
 import pytest
-from src.main import CampoMinado  
+import tkinter as tk
+from src.main import CampoMinado, Jogo  
 
 
-def test_criar_tabuleiro_facil():
-   
-    campo_minado = CampoMinado(None, 8, 8, 10)
+def obter_combinacoes_dimensoes():
+    # Defina as combinações de linhas e colunas para diferentes níveis
+    dimensoes = {
+        'facil': (8, 8),
+        'intermediario': (10, 16),
+        'dificil': (24, 24)
+    }
+    return dimensoes.items()
+
+@pytest.mark.parametrize("nivel, dimensoes", obter_combinacoes_dimensoes())
+def test_criar_linhas_tabuleiro(nivel, dimensoes):
+    linhas, colunas = dimensoes
+    campo_minado = CampoMinado(None, linhas, colunas, 10)  
+
+    assert len(campo_minado.tabuleiro) == linhas
+
+@pytest.mark.parametrize("nivel, dimensoes", obter_combinacoes_dimensoes())
+def test_criar_colunas_tabuleiro(nivel, dimensoes):
+    linhas, colunas = dimensoes
+    campo_minado = CampoMinado(None, linhas, colunas, 10)  
+
+    assert len(campo_minado.tabuleiro[0]) == colunas
+
+
+@pytest.mark.parametrize("linhas, colunas",[(8,7),(7,8),(10,7),(7,16),(25,24),(24,25)])
+def test_criar_tabuleiro_tamanho_invalido_facil(linhas,colunas):
+    with pytest.raises(ValueError):   
+        CampoMinado(None, linhas, colunas, 10)
+
+
+
+
+#teste criar interface no modo dificil
+# def test_criar_interface_nivel_dificil():
+#     root = tk.Tk()
+#     jogo = Jogo(root)
+#     jogo.iniciar_jogo(24, 24, 100)
     
-    # Verifica se o tabuleiro foi criado corretamente
-    assert len(campo_minado.tabuleiro) == 8
-    assert len(campo_minado.tabuleiro[0]) == 8
+#     assert jogo.jogo.linhas == 24
+#     assert jogo.jogo.colunas == 24
+#     assert jogo.jogo.num_bombas == 100
 
-def test_criar_tabuleiro_intermediario():
-  
-    campo_minado = CampoMinado(None, 10, 16, 30)
-    
-    # Verifica se o tabuleiro foi criado corretamente
-    assert len(campo_minado.tabuleiro) == 10
-    assert len(campo_minado.tabuleiro[0]) == 16
-    
+#     root.destroy()
 
 
-def test_criar_tabuleiro_tamanho_invalido():
-    with pytest.raises(ValueError):
-       
-        CampoMinado(None, 7, 7, 10)
-
-def test_posicoes_bombas():
-    
-    campo_minado = CampoMinado(None, 8, 8, 4)
-
-    
-    campo_minado.tabuleiro[0][0] = -1
-    campo_minado.tabuleiro[1][1] = -1
-    campo_minado.tabuleiro[2][2] = -1
-    campo_minado.tabuleiro[3][3] = -1
-    
-    assert campo_minado.tabuleiro[0][0] == -1
-    assert campo_minado.tabuleiro[1][1] == -1
-    assert campo_minado.tabuleiro[2][2] == -1
-    assert campo_minado.tabuleiro[3][3] == -1
             
 if __name__ == "__main__":
     pytest.main()

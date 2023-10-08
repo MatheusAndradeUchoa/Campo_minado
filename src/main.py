@@ -15,15 +15,26 @@ class CampoMinado:
         self.criar_tabuleiro()
         self.criar_interface()
 
-    def criar_tabuleiro(self):
-        bombas_adicionadas = 0
-        while bombas_adicionadas < self.num_bombas:
+    def criar_tabuleiro(self, bomb_positions=None):
+        if bomb_positions is None:
+            bomb_positions = self.gerar_posicoes_bombas_aleatorias()
+
+        self.posicionar_bombas_em_posicoes(bomb_positions)
+
+    def gerar_posicoes_bombas_aleatorias(self):
+        bomb_positions = set()
+        while len(bomb_positions) < self.num_bombas:
             x = random.randint(0, self.linhas - 1)
             y = random.randint(0, self.colunas - 1)
+            bomb_positions.add((x, y))
+        return list(bomb_positions)
 
-            if self.tabuleiro[x][y] != -1:
-                self.tabuleiro[x][y] = -1
-                bombas_adicionadas += 1
+    def posicionar_bombas_em_posicoes(self, positions):
+        for x, y in positions:
+            if not (0 <= x < self.linhas and 0 <= y < self.colunas):
+                raise ValueError("Posição inválida para posicionar a bomba")
+            self.tabuleiro[x][y] = -1
+
                  
     def verificar_dimensoes(self):
         if self.linhas < 8 or self.colunas < 8 or self.linhas > 24 or self.colunas > 24:

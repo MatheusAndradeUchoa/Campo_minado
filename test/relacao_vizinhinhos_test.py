@@ -64,6 +64,18 @@ def test_calcular_vizinhos_dificil_com_bombas(posicao, posicao_bomba, vizinhos_e
     vizinhos = campo_minado.calcular_vizinhos(*posicao)
     assert vizinhos == vizinhos_esperados
 
+@pytest.mark.parametrize("posicao, posicao_bomba, vizinhos_esperados", [
+    ((0, 0), [(1, 0), (0, 1)], 2),  # 2 bombas ao redor
+    ((2, 2), [(1, 2), (2, 1)], 2),  # 2 bombas ao redor
+    ((3, 3), [(2, 3), (3, 2)], 2),  # 2 bombas ao redor
+    ((5, 5), [(5, 4), (4, 5)], 2),  # 2 bombas ao redor
+    ((7, 7), [(6, 7), (7, 6)], 2),  # 2 bombas ao redor
+])
+def test_coontador_de_vizinhos(posicao, posicao_bomba, vizinhos_esperados):
+    campo_minado = CampoMinado(None, 10, 16, 0)
+    posicionar_bombas(campo_minado, posicao_bomba)
+    vizinhos = campo_minado.calcular_vizinhos(*posicao)
+    assert vizinhos == vizinhos_esperados
 
 
 

@@ -49,15 +49,18 @@ def test_posicoes_bombas(posicao_bombas):
     for x, y in posicao_bombas:
         campo_minado.tabuleiro[x][y] = -1
         
-#Test que verifica a relação de vizinhança sem bombas nos cantos do tabuleiro e no centro
-#Modo Facil
-@pytest.mark.parametrize("posicao, , expected_vizinhos", [
-    ((0, 0), 0),  # Canto superior esquerdo
-    ((0, 7), 0),  # Canto superior direito
-    ((7, 0), 0),  # Canto inferior esquerdo
-    ((7, 7), 0),  # Canto inferior direito
-    ((4, 4), 0)  # algum lugar no centro
-])
+    for x, y in posicao_bombas:
+        assert campo_minado.tabuleiro[x][y] == -1
+        
+#modo Intermediario
+@pytest.mark.parametrize("posicao_bomba", [
+    [(0, 0), (1, 1), (2, 2), (3, 3)],
+    [(2, 3), (4, 5), (6, 7), (1, 7)],
+    [(0, 1), (2, 4), (5, 3), (6, 6)],
+    [(1, 2), (3, 5), (7, 7), (0, 5)],
+    [(4, 6), (6, 2), (3, 1), (2, 7)],
+    [(5, 1), (0, 2), (4, 3), (6, 4)]
+    ])      
 def test_calcular_vizinhos_sem_bomba(posicao, expected_vizinhos):  
     vizinhos = campo_minado.calcular_vizinhos(*posicao)
     assert vizinhos == expected_vizinhos

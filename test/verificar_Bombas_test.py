@@ -8,8 +8,45 @@ def test_verificar_bombas_facil():
     num_bombas = 10
     campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
 
-def posicionar_bombas(campo_minado, bomb_positions):
-    for x, y in bomb_positions:
+    # Verifica se o número correto de bombas foi adicionado
+    bomb_count = sum(row.count(-1) for row in campo_minado.tabuleiro)
+    assert bomb_count == num_bombas
+
+def test_verificar_bombas_intermediario():
+    root = None
+    linhas = 10
+    colunas = 16
+    num_bombas = 30
+    campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
+
+    # Verifica se o número correto de bombas foi adicionado
+    contador_de_bomba = sum(row.count(-1) for row in campo_minado.tabuleiro)
+    assert contador_de_bomba == num_bombas
+
+def test_verificar_bombas_dificil():
+    root = None
+    linhas = 24
+    colunas = 24
+    num_bombas = 100
+    campo_minado = CampoMinado(root, linhas, colunas, num_bombas)
+
+    # Verifica se o número correto de bombas foi adicionado
+    contador_de_bomba = sum(row.count(-1) for row in campo_minado.tabuleiro)
+    assert contador_de_bomba == num_bombas
+
+#modo FAcil    
+@pytest.mark.parametrize("posicao_bombas", [
+    [(0, 0), (1, 1), (2, 2), (3, 3)],
+    [(2, 3), (4, 5), (6, 7), (1, 7)],
+    [(0, 1), (2, 4), (5, 3), (6, 6)],
+    [(1, 2), (3, 5), (7, 7), (0, 5)],
+    [(4, 6), (6, 2), (3, 1), (2, 7)],
+    [(5, 1), (0, 2), (4, 3), (6, 4)]
+    ])
+def test_posicoes_bombas(posicao_bombas):
+    campo_minado = CampoMinado(None, 8, 8, 4)
+
+    for x, y in posicao_bombas:
         campo_minado.tabuleiro[x][y] = -1
         
 #Test que verifica a relação de vizinhança sem bombas nos cantos do tabuleiro e no centro

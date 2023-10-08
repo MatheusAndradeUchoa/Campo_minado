@@ -26,7 +26,7 @@ class CampoMinado:
                 bombas_adicionadas += 1
                  
     def verificar_dimensoes(self):
-        if self.linhas < 8 or self.colunas < 8 or self.linhas > 64 or self.colunas > 64:
+        if self.linhas < 8 or self.colunas < 8 or self.linhas > 24 or self.colunas > 24:
             raise ValueError("As dimensões do tabuleiro estao incorretas")
    
     def criar_interface(self):

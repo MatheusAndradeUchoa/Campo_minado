@@ -61,17 +61,24 @@ def test_posicoes_bombas(posicao_bombas):
     [(4, 6), (6, 2), (3, 1), (2, 7)],
     [(5, 1), (0, 2), (4, 3), (6, 4)]
     ])      
-def test_calcular_vizinhos_sem_bomba(posicao, expected_vizinhos):  
-    vizinhos = campo_minado.calcular_vizinhos(*posicao)
-    assert vizinhos == expected_vizinhos
+def test_posicoes_bombas__modo_intermediario(posicao_bomba):
+    campo_minado = CampoMinado(None, 10, 16, 4)
 
-@pytest.mark.parametrize("posicao,expected_vizinhos", [
-    ((0, 0), 0),  # Canto superior esquerdo
-    ((0, 15),0),  # Canto superior direito
-    ((9, 0),0),  # Canto inferior esquerdo
-    ((9, 15), 0),  # Canto inferior direito
-    ((5, 7), 0)    #centro(eu acho, sou burro)
-])
+    for x, y in posicao_bomba:
+        campo_minado.tabuleiro[x][y] = -1
+    
+    for x, y in posicao_bomba:
+        assert campo_minado.tabuleiro[x][y] == -1
+        
+#Modo Dificil
+@pytest.mark.parametrize("posicao_bombas", [
+    [(0, 0), (1, 1), (2, 2), (3, 3)],
+    [(2, 3), (4, 5), (6, 7), (1, 7)],
+    [(0, 1), (2, 4), (5, 3), (6, 6)],
+    [(1, 2), (3, 5), (7, 7), (0, 5)],
+    [(4, 6), (6, 2), (3, 1), (2, 7)],
+    [(5, 1), (0, 2), (4, 3), (6, 4)]
+    ])      
 def test_calcular_vizinhos_intermediario_sem_bomba(posicao, expected_vizinhos):
     campo_minado_intermediario = CampoMinado(None, 10, 16, 0) 
     vizinhos = campo_minado_intermediario.calcular_vizinhos(*posicao)

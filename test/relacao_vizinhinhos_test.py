@@ -2,7 +2,8 @@ import pytest
 from src.main import CampoMinado
 
 campo_minado = CampoMinado(None,8,8,0)
-
+intermediario = CampoMinado(None,10,16,0)
+dificil = CampoMinado(None,10,16,0)
 def posicionar_bombas(campo_minado, bomb_positions):
     for x, y in bomb_positions:
         campo_minado.tabuleiro[x][y] = -1
@@ -20,8 +21,32 @@ def posicionar_bombas(campo_minado, bomb_positions):
 def test_calcular_vizinhos_sem_bomba(posicao, expected_vizinhos):  
     vizinhos = campo_minado.calcular_vizinhos(*posicao)
     assert vizinhos == expected_vizinhos
+    
+# #intermediario
+@pytest.mark.parametrize("posicao, vizinhos_esperados", [
+    ((0, 0),0),  # Canto superior esquerdo
+    ((0, 15),0),  # Canto superior direito
+    ((9, 0),0),  # Canto inferior esquerdo
+    ((9, 15),0),  # Canto inferior direito
+    ((5, 7),0) #não tenho ideia de onde ta mas deve ta perto do centro(muito grande)
+])
+def test_calcular_vizinhos_sem_bomba_intermediario(posicao, vizinhos_esperados):  
+    vizinhos = intermediario.calcular_vizinhos(*posicao)
+    assert vizinhos == vizinhos_esperados
+    
+# #dificil   
+@pytest.mark.parametrize("posicao, vizinhos_esperados", [
+    ((0, 0), 0),  
+    ((0, 23),0),  
+    ((23, 0),0), 
+    ((23, 23),0),  
+    ((12, 12),0)  #não tenho ideia de onde ta mas deve ta perto do centro(muito grande)
+])
+def test_calcular_vizinhos_sem_bomba_dificil(posicao, vizinhos_esperados):  
+    vizinhos = dificil.calcular_vizinhos(*posicao)
+    assert vizinhos == vizinhos_esperados
 
-
+   
 #Test para calcular vizinhos nos cantos e no centro do tabuleiro
 #Modo Facil
 @pytest.mark.parametrize("posicao, posicao_bomba, vizinhos_esperados", [

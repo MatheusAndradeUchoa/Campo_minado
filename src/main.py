@@ -62,7 +62,7 @@ class CampoMinado:
         for x in range(self.linhas):
             for y in range(self.colunas):
                 self.botoes[x][y] = tk.Button(self.root, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))
-                self.botoes[x][y].grid(row=x, column=y)
+                self.botoes[x][y].grid(row=x+1, column=y)
                 self.botoes[x][y].bind('<Button-1>', lambda event, x=x, y=y: self.on_left_click(x, y))
                 self.botoes[x][y].bind('<Button-3>', lambda event, x=x, y=y: self.on_right_click(x, y))
         restart_button = tk.Button(self.root, text="Reiniciar Jogo", command=self.reiniciar_jogo)

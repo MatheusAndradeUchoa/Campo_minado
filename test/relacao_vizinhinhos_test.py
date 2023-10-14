@@ -1,5 +1,7 @@
 import pytest
-from src.main import CampoMinado
+
+from src.campo_minado import CampoMinado
+
 
 campo_minado = CampoMinado(None,8,8,0)
 intermediario = CampoMinado(None,10,16,0)

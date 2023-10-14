@@ -1,7 +1,8 @@
 
 import pytest
-from src.main import CampoMinado
 from unittest.mock import MagicMock, patch
+
+from src.campo_minado import CampoMinado
 
 def test_revelar_celula():
     campo_minado = CampoMinado(None, 8, 8, 10)

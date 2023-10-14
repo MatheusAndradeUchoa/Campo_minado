@@ -39,7 +39,7 @@ class CampoMinado:
     def verificar_dimensoes(self):
         if self.linhas < 8 or self.colunas < 8 or self.linhas > 24 or self.colunas > 24:
             raise ValueError("As dimensões do tabuleiro estao incorretas")
-   
+    
     def atualizar_tempo(self,timer_label):
         global tempo
         tempo += 1
@@ -47,6 +47,18 @@ class CampoMinado:
         timer_label.after(1000, lambda: self.atualizar_tempo(timer_label)) 
     
     def criar_interface(self):
+       
+        
+        global tempo
+        tempo = 0
+        timer_label = tk.Label(self.root, text='Tempo: 0 segundos')
+        timer_label.grid(row=0, column=0, columnspan=self.colunas // 2)
+        self.atualizar_tempo(timer_label) 
+        
+        # Adicionando a contagem de bandeiras acima do tabuleiro
+        bandeiras_label = tk.Label(self.root, text=f'Bandeiras: {self.contador_bandeira}')
+        bandeiras_label.grid(row=0, column=self.colunas // 2, columnspan=self.colunas // 2)
+
         for x in range(self.linhas):
             for y in range(self.colunas):
                 self.botoes[x][y] = tk.Button(self.root, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))

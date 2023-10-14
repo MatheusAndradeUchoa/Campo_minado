@@ -40,6 +40,12 @@ class CampoMinado:
         if self.linhas < 8 or self.colunas < 8 or self.linhas > 24 or self.colunas > 24:
             raise ValueError("As dimensões do tabuleiro estao incorretas")
    
+    def atualizar_tempo(self,timer_label):
+        global tempo
+        tempo += 1
+        timer_label.config(text=f'Tempo: {tempo}')
+        timer_label.after(1000, lambda: self.atualizar_tempo(timer_label)) 
+    
     def criar_interface(self):
         for x in range(self.linhas):
             for y in range(self.colunas):

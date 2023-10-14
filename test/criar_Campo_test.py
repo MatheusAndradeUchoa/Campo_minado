@@ -1,6 +1,8 @@
 import pytest
 import tkinter as tk
-from src.main import CampoMinado, Jogo  
+
+from src.campo_minado import CampoMinado
+  
 
 
 def obter_combinacoes_dimensoes():

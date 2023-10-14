@@ -1,5 +1,7 @@
 import pytest
-from src.main import CampoMinado  
+
+from src.campo_minado import CampoMinado
+ 
 
 def test_verificar_vitoria():
     campo_minado = CampoMinado(None, 8, 8, 4)

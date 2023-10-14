@@ -1,6 +1,7 @@
 import tkinter
 import pytest
-from src.main import CampoMinado
+
+from src.campo_minado import CampoMinado
 
 
 def test_verificar_bombas_facil():

@@ -1,5 +1,7 @@
+import tkinter
 import pytest
 from src.main import CampoMinado
+
 
 def test_verificar_bombas_facil():
     root = None
@@ -127,14 +129,67 @@ def test_posicionar_bombas_posicao_invalida_modo_dificil(posicao_invalida):
         campo_minado = CampoMinado(None, 24,24, 10)
         campo_minado.posicionar_bombas_em_posicoes(posicao_invalida)
 
-
-
-
-
-
-
+#teste de Limite
+def test_tabuleiro_sem_bombas_facil():
+    campo_minado = CampoMinado(None, 8, 8, 0)
+    campo_minado.criar_tabuleiro()
 
     
+    for linha in campo_minado.tabuleiro:
+        for celula in linha:
+            assert celula != -1
+#intermediario
+def test_tabuleiro_sem_bombas_intermediario():
+    campo_minado = CampoMinado(None, 10, 16, 0)
+    campo_minado.criar_tabuleiro()
+    for linha in campo_minado.tabuleiro:
+        for celula in linha:
+            assert celula != -1
+#dificil
+def test_tabuleiro_sem_bombas_dificl():
+    campo_minado = CampoMinado(None, 24, 24, 0)
+    campo_minado.criar_tabuleiro()
+    for linha in campo_minado.tabuleiro:
+        for celula in linha:
+            assert celula != -1
 
-    
+def test_tabuleiro_apenas_bombas():
+    campo_minado = CampoMinado(None, 8, 8, 64)
+    campo_minado.criar_tabuleiro()
+
+    # Verifica se todas as células contêm bombas
+    for linha in campo_minado.tabuleiro:
+        for celula in linha:
+            assert celula == -1
+
+def test_numero_bombas_maior_que_10():
+    campo_minado = CampoMinado(None, 8, 8, 15)
+    assert campo_minado.num_bombas > 10
+
+def test_numero_bombas_menor_que_10():
+    campo_minado = CampoMinado(None, 8, 8, 5)
+    assert campo_minado.num_bombas < 10
+
+def test_numero_bombas_maior_que_30():
+    campo_minado = CampoMinado(None, 10, 16, 31)
+    assert campo_minado.num_bombas > 30
+
+def test_numero_bombas_menor_que_30():
+    campo_minado = CampoMinado(None, 10, 16, 20)
+    assert campo_minado.num_bombas < 30
+
+def test_numero_bombas_maior_que_100():
+    campo_minado = CampoMinado(None, 24, 24, 112)
+    assert campo_minado.num_bombas > 100
+
+def test_numero_bombas_menor_que_100():
+    campo_minado = CampoMinado(None, 24, 24, 34)
+    assert campo_minado.num_bombas < 100
+
+#mover pra outra pastaaaaa
+#
+#
+#
+#
+#
 

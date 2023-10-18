@@ -76,7 +76,7 @@ class CampoMinado:
              
         self.criar_tabuleiro()
         self.criar_interface()
-    
+        
     def alternar_bandeira(self, x, y):
         if self.botoes[x][y]['text'] == '':
             self.botoes[x][y]['text'] = '🏴'
@@ -92,7 +92,7 @@ class CampoMinado:
                 if 0 <= novo_x < self.linhas and 0 <= novo_y < self.colunas:
                     if self.botoes[novo_x][novo_y]['state'] != 'disabled':
                         self.revelar_celula(novo_x, novo_y)
-
+    
     def atualizar_tempo(self,timer_label):
         global tempo
         tempo += 1
@@ -105,7 +105,7 @@ class CampoMinado:
 
     def on_right_click(self, x, y):
         if self.root.state() == 'normal':
-            self.adicionar_bandeira(x, y)
+            self.alternar_bandeira(x, y)
                 
     def on_button_click(self, x, y):
         if self.root.state() == 'normal':
@@ -124,12 +124,6 @@ class CampoMinado:
 
             if self.verificar_vitoria():
                 self.vitoria()
-
-    def adicionar_bandeira(self, x, y):
-        if self.botoes[x][y]['text'] == '':
-            self.botoes[x][y]['text'] = '🏴'
-        elif self.botoes[x][y]['text'] == ' 🏴':
-            self.botoes[x][y]['text'] = ''
                 
     def calcular_vizinhos(self, x, y):
         bomb_count = 0
@@ -141,7 +135,6 @@ class CampoMinado:
         return bomb_count
     
     def verificar_vitoria(self):
-        # Verifica se todas as células que não são bombas foram reveladas
         for x in range(self.linhas):
             for y in range(self.colunas):
                 if self.tabuleiro[x][y] != -1 and self.botoes[x][y]['state'] != 'disabled':

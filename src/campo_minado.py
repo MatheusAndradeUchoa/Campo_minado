@@ -58,7 +58,7 @@ class CampoMinado:
         
         for x in range(self.linhas):
             for y in range(self.colunas):
-                self.botoes[x][y] = tk.Button(self.root, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))
+                self.botoes[x][y] = tk.Button(frame_tabuleiro, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))
                 self.botoes[x][y].grid(row=x, column=y)
                 self.botoes[x][y].bind('<Button-1>', lambda event, x=x, y=y: self.on_left_click(x, y))
                 self.botoes[x][y].bind('<Button-3>', lambda event, x=x, y=y: self.on_right_click(x, y))
@@ -68,7 +68,8 @@ class CampoMinado:
         if self.root:
             exit_button = tk.Button(self.root, text="Sair", command=self.root.quit)
             exit_button.grid(row=self.linhas, column=self.colunas // 2, columnspan=self.colunas // 2, sticky="nsew")
-            
+        
+      
     def reiniciar_jogo(self):
         for widget in self.root.winfo_children():
             widget.destroy() 
@@ -76,6 +77,14 @@ class CampoMinado:
         self.criar_tabuleiro()
         self.criar_interface()
     
+    def alternar_bandeira(self, x, y):
+        if self.botoes[x][y]['text'] == '':
+            self.botoes[x][y]['text'] = '🏴'
+            self.contador_bandeiras += 1
+        else:
+            self.botoes[x][y]['text'] = ''
+            self.contador_bandeiras -= 1
+
     def revelar_adjacentes(self, x, y):
         for i in range(-1, 2):
             for j in range(-1, 2):

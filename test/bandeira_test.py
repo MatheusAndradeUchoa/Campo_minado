@@ -22,7 +22,10 @@ def test_adicionar_bandeira_em_diferentes_niveis(linha,coluna):
     (24, 24, 100, (4, 5)),
     (8, 8 ,10,(7 , 5)),
     (24, 24, 100, (12, 12)),
-    (10, 16 ,30,(7 , 5)),
+    (10, 16 ,30,(6 , 8)),
+    (8, 8 ,30,(3, 5)),
+    (10, 16 ,30,(8 , 5)),
+    (24, 24 ,30,(23 , 10)),
 ])
 def test_adicionar_bandeira(linha, coluna, nivel, coordenada):
     campo_minado = CampoMinado(None, linha, coluna, nivel)
@@ -37,7 +40,10 @@ def test_adicionar_bandeira(linha, coluna, nivel, coordenada):
     (24, 24, 100, (4, 5)),
     (8, 8 ,10,(7 , 5)),
     (24, 24, 100, (12, 12)),
-    (10, 16 ,30,(7 , 5)),
+    (10, 16 ,30,(6 , 8)),
+    (8, 8 ,30,(3, 5)),
+    (10, 16 ,30,(8 , 5)),
+    (24, 24 ,30,(23 , 10)),
 ])
 def test_remover_bandeira(linha, coluna, nivel, coordenada):
     campo_minado = CampoMinado(None, linha, coluna, nivel)

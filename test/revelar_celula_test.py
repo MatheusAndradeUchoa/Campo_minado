@@ -33,22 +33,79 @@ def test_revelar_celula_sem_bomba_com_vizinhos():
 
     assert campo_minado.botoes[1][1]['text'] == '0'
 
-def test_revelar_celula_chama_game_over():
-    campo_minado = CampoMinado(None, 8, 8, 0)
-    campo_minado.tabuleiro[0][0] = -1
+def test_revelar_celula_sem_bomba_com_vizinhos_intermediario():
+    campo_minado = CampoMinado(None, 10, 16, 30)
+    campo_minado.revelar_adjacentes = MagicMock()
+
+    for i in range(campo_minado.linhas):
+        for j in range(campo_minado.colunas):
+            if (i, j) != (1, 1):
+                campo_minado.tabuleiro[i][j] = 0
+
+    campo_minado.revelar_celula(1, 1)
+
+    assert campo_minado.botoes[1][1]['text'] == '0'
+
     
-   
+@pytest.mark.parametrize(" coordenada", [
+    ((0, 0)),  
+    ((0, 7)),   
+    ((7, 0)),
+    ((7, 7)),
+    ((4, 4)),
+    ((7 , 5)),
+])
+ 
+def test_revelar_celula_chama_game_over(coordenada):
+    campo_minado = CampoMinado(None, 8, 8, 0)
+    x,y = coordenada
+    campo_minado.tabuleiro[x][y] = -1
+    
     with patch.object(campo_minado, 'game_over') as mock_game_over:
-        campo_minado.revelar_celula(0, 0)
+        campo_minado.revelar_celula(x, y)
+
+        mock_game_over.assert_called_once()
+
+@pytest.mark.parametrize(" coordenada", [
+    ((0, 0)),  
+    ((0, 15)),   
+    ((9, 0)),
+    ((9, 15)),
+    ((5, 7)),
+    ((7 , 5)),
+])
+ 
+def test_revelar_celula_chama_game_over_intermediario(coordenada):
+    campo_minado = CampoMinado(None, 10, 16, 0)
+    x,y = coordenada
+    campo_minado.tabuleiro[x][y] = -1
+    
+    with patch.object(campo_minado, 'game_over') as mock_game_over:
+        campo_minado.revelar_celula(x, y)
+
+        mock_game_over.assert_called_once()
+
+@pytest.mark.parametrize(" coordenada", [
+    ((0, 0)),  
+    ((0, 23)),   
+    ((23, 0)),
+    ((23, 23)),
+    ((12, 12)),
+    ((7 , 5)),
+])
+ 
+def test_revelar_celula_chama_game_over_dificl(coordenada):
+    campo_minado = CampoMinado(None, 24, 24, 0)
+    x,y = coordenada
+    campo_minado.tabuleiro[x][y] = -1
+    
+    with patch.object(campo_minado, 'game_over') as mock_game_over:
+        campo_minado.revelar_celula(x, y)
 
         mock_game_over.assert_called_once()
 
 
-@pytest.fixture
-def campo_minado():
-    # Suponha que você tenha uma instância de CampoMinado
-    campo_minado = CampoMinado(None, 8, 8, 10)
-    return campo_minado
+
 
 
 

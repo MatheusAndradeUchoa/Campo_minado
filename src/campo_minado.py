@@ -10,6 +10,7 @@ class CampoMinado:
         self.linhas = linhas
         self.colunas = colunas 
         self.num_bombas = num_bombas
+        self.contador_bandeiras = 0
         self.verificar_dimensoes()
         self.tabuleiro = [[0] * colunas for _ in range(linhas)]
         self.botoes = [[None] * colunas for _ in range(linhas)]
@@ -43,6 +44,18 @@ class CampoMinado:
             raise ValueError("As dimensões do tabuleiro estao incorretas")
    
     def criar_interface(self):
+        global tempo
+        tempo = 0
+        timer_label = tk.Label(self.root, text='Tempo: 0')
+        timer_label.grid(row=0, column=0, columnspan=self.colunas // 2, sticky="nsew")
+        self.atualizar_tempo(timer_label) 
+        
+        bandeiras_label = tk.Label(self.root, text=f'Bandeiras: {self.contador_bandeiras}')
+        bandeiras_label.grid(row=0, column=self.colunas // 2, columnspan=self.colunas // 2)
+        
+        frame_tabuleiro = tk.Frame(self.root)
+        frame_tabuleiro.grid(row=1, column=0, columnspan=self.colunas)
+        
         for x in range(self.linhas):
             for y in range(self.colunas):
                 self.botoes[x][y] = tk.Button(self.root, width=3, height=1, command=lambda x=x, y=y: self.revelar_celula(x, y))

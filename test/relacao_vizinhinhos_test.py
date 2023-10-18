@@ -13,7 +13,7 @@ def posicionar_bombas(campo_minado, bomb_positions):
 #Test que verifica a relação de vizinhança sem bombas nos cantos do tabuleiro e no centro
 
 #Modo Facil
-@pytest.mark.parametrize("posicao, , expected_vizinhos", [
+@pytest.mark.parametrize("posicao , expected_vizinhos", [
     ((0, 0), 0),  # Canto superior esquerdo
     ((0, 7), 0),  # Canto superior direito
     ((7, 0), 0),  # Canto inferior esquerdo

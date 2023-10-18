@@ -93,6 +93,11 @@ class CampoMinado:
                     if self.botoes[novo_x][novo_y]['state'] != 'disabled':
                         self.revelar_celula(novo_x, novo_y)
 
+    def atualizar_tempo(self,timer_label):
+        global tempo
+        tempo += 1
+        timer_label.config(text=f'Tempo: {tempo}')
+        timer_label.after(1000, lambda: self.atualizar_tempo(timer_label)) 
 
     def on_left_click(self, x, y):
         if self.root.state() == 'normal':

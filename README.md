@@ -95,6 +95,8 @@ O número de bombas no tabuleiro também deve ser configurável.
 <br>
 
 # Testes
+ ## Total  
+ ![Total](img/total.png)
 
 ## 1. Criação de Campo
 ![Criação de Campo](img/criar_campo.png)

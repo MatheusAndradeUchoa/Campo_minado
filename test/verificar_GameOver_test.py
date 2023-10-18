@@ -1,19 +1,59 @@
 import pytest
-
 from src.campo_minado import CampoMinado
 
 
-def test_game_over_no_interface():
-    # Criar uma instância de CampoMinado com dimensões 8x8 e 1 bomba
-   
-    campo_minado = CampoMinado(None, 8, 8, 1)
+@pytest.mark.parametrize("posicao", [
+    (0, 0),  
+    (0, 7),
+    (3, 3),
+    (7, 7)
+])
+def test_game_over_facil(posicao):
+    campo_minado = CampoMinado(None, 8, 8, 10)
 
-    # Colocar uma bomba em uma célula (0, 0)
-    campo_minado.tabuleiro[0][0] = -1
-
-    # Chamar a função game_over sem exibir a interface
+    campo_minado.tabuleiro[posicao[0]][posicao[1]] = -1
     campo_minado.game_over(mostrar_interface=False)
 
-    # Verificar se os botões foram desativados e marcados com 'X'
-    assert campo_minado.botoes[0][0]['text'] == 'X'
-    assert campo_minado.botoes[0][0]['state'] == 'disabled'
+    
+    assert campo_minado.botoes[posicao[0]][posicao[1]]['text'] == 'X'
+    assert campo_minado.botoes[posicao[0]][posicao[1]]['state'] == 'disabled'
+
+
+
+@pytest.mark.parametrize("posicao", [
+    (0, 0),  
+    (9, 15),
+    (0, 15), 
+    (5, 8),
+    (9, 15) 
+])
+def test_game_over_intermediario(posicao):
+    campo_minado = CampoMinado(None, 10, 16, 40)
+
+   
+    campo_minado.tabuleiro[posicao[0]][posicao[1]] = -1
+    campo_minado.game_over(mostrar_interface=False)
+
+   
+    assert campo_minado.botoes[posicao[0]][posicao[1]]['text'] == 'X'
+    assert campo_minado.botoes[posicao[0]][posicao[1]]['state'] == 'disabled'
+
+
+
+@pytest.mark.parametrize("posicao", [
+    (0, 0),  # Canto Superior
+    (23, 23),  # Canto Inferior
+    (0, 23),
+    (12, 12),
+    (23, 23) 
+])
+def test_game_over_dificil(posicao):
+    campo_minado = CampoMinado(None, 24, 24, 99)
+
+    
+    campo_minado.tabuleiro[posicao[0]][posicao[1]] = -1
+    campo_minado.game_over(mostrar_interface=False)
+
+    
+    assert campo_minado.botoes[posicao[0]][posicao[1]]['text'] == 'X'
+    assert campo_minado.botoes[posicao[0]][posicao[1]]['state'] == 'disabled'

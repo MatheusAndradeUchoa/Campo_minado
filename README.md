@@ -90,3 +90,30 @@ O número de bombas no tabuleiro também deve ser configurável.
 - O usuario dever revelar as celulas com botão direito
 ## R23: Adicionar e remover bandeira com botão direito
 - Deve ser possivel adicionar e remover bandeira com botão direito
+
+<br><br>
+<br>
+
+# Testes
+
+## 1. Criação de Campo
+![Criação de Campo](img/criar_campo.png)
+
+## 2. Relação de Vizinhança
+![Relação de Vizinhança](img/relacao_vizinhos.png)
+
+## 3. Bandeira
+![Bandeira](img/bandeira.png)
+
+## 4. Verificações de Bomba
+![Verificações de Bomba](img/verificações_bomba.png)
+
+## 5. Game Over
+![Game Over](img/game_over.png)
+
+## 6. Vitória
+![Vitória](img/vitoria.png)
+
+## 7. Revelar Célula
+![Revelar Célula](img/revelar_celula.png)
+

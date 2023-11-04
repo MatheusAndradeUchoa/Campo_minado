@@ -47,9 +47,10 @@ class CampoMinado:
         global tempo
         tempo = 0
         timer_label = tk.Label(self.root, text='Tempo: 0')
-        timer_label.grid(row=0, column=0, columnspan=self.colunas // 2, sticky="nsew")
+        timer_label.grid(row=0, column=0, columnspan=self.colunas // 2)
         self.atualizar_tempo(timer_label) 
         
+        global bandeiras_label
         bandeiras_label = tk.Label(self.root, text=f'Bandeiras: {self.contador_bandeiras}')
         bandeiras_label.grid(row=0, column=self.colunas // 2, columnspan=self.colunas // 2)
         
@@ -78,13 +79,18 @@ class CampoMinado:
         self.criar_interface()
         
     def alternar_bandeira(self, x, y):
+        global bandeiras_label
         if self.botoes[x][y]['text'] == '':
             self.botoes[x][y]['text'] = '🏴'
             self.contador_bandeiras += 1
         else:
             self.botoes[x][y]['text'] = ''
             self.contador_bandeiras -= 1
-
+            
+        bandeiras_text = f'Bandeiras: {self.contador_bandeiras}'
+        bandeiras_label.config(text=bandeiras_text)    
+        
+    
     def revelar_adjacentes(self, x, y):
         for i in range(-1, 2):
             for j in range(-1, 2):

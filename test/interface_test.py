@@ -1,53 +1,54 @@
-# # test_jogo.py
-# import pytest
-# import tkinter as tk
-# # from ..src.jogo import Jogo
-
-# @pytest.fixture
-# def root():
-#     return tk.Tk()
-
-# def test_mostrar_tela_inicial(root):
-#     jogo = Jogo(root)
-#     jogo.mostrar_tela_inicial()
-#     # Adicione aqui os asserts para verificar se a tela inicial foi mostrada corretamente
-#     assert len(root.winfo_children()) == 4  # Verifica se há 4 widgets
-
-# def test_iniciar_jogo(root):
-#     jogo = Jogo(root)
-#     jogo.iniciar_jogo(8, 8, 10)
-#     # Adicione aqui os asserts para verificar se o jogo foi iniciado corretamente
-#     assert len(root.winfo_children()) == 81  # Verifica se há 81 widgets (8x8 + botões de ação)
-
-# def test_on_close(root):
-#     jogo = Jogo(root)
-#     # Simule o fechamento da janela
-#     jogo.on_close()
-#     # Adicione aqui os asserts para verificar se o fechamento é tratado corretamente
-#     assert root.winfo_children() == []  # Verifica se não há widgets após o fechamento
-
-# def test_reiniciar_jogo(root):
-#     jogo = Jogo(root)
-#     # Simule o reinício do jogo
-#     jogo.reiniciar_jogo()
-#     # Adicione aqui os asserts para verificar se o jogo é reiniciado corretamente
-#     assert len(root.winfo_children()) == 4  # Verifica se há 4 widgets após o reinício
-
-# def test_ver_historico(root):
-#     jogo = Jogo(root)
-#     # Simule a visualização do histórico
-#     jogo.ver_historico()
-#     # Adicione aqui os asserts para verificar se o histórico é exibido corretamente
-#     assert len(root.winfo_children()) == 3  # Verifica se há 3 widgets (label, button, messagebox)
-
-import pytest
 import tkinter as tk
-from src.campo_minado import CampoMinado
+import pytest
+from unittest.mock import Mock, patch
+from src.campo_minado import CampoMinado  
 
 
-@pytest.fixture
-def root():
-    return tk.Tk()
+def test_vitoria_yes():
+    root = tk.Tk()
+    campo_minado = CampoMinado(root, 8, 8, 10)
+    campo_minado.reiniciar_jogo = Mock()
+    with patch("tkinter.messagebox.askquestion", return_value="yes")as mock_askquestion:
+        campo_minado.vitoria()
+    
+    mock_askquestion.assert_called_once_with("Parabéns!", "Você venceu o jogo! Quer jogar novamente?")
+    assert campo_minado.reiniciar_jogo.called
 
+def test_vitoria_no():
+    root = tk.Tk()
+    campo_minado = CampoMinado(root, 8, 8, 10)
+    campo_minado.root.destroy = Mock()
+    with patch("tkinter.messagebox.askquestion", return_value="no")as mock_askquestion:
+        campo_minado.vitoria()
+    
+    mock_askquestion.assert_called_once_with("Parabéns!", "Você venceu o jogo! Quer jogar novamente?")
+    assert campo_minado.root.destroy.called
 
+def test_game_over_yes():
+    root = tk.Tk()
+    campo_minado = CampoMinado(root, 8, 8, 10)
+    campo_minado.reiniciar_jogo = Mock()
+    with patch("tkinter.messagebox.askquestion", return_value="yes")as mock_askquestion:
+       
+        campo_minado.game_over()
+    
+    
+    mock_askquestion.assert_called_once_with("Fim de Jogo", "Você perdeu!\nDeseja jogar novamente ou sair?")
+    
+   
+    campo_minado.reiniciar_jogo.assert_called_once()
+
+def test_game_over_no():
+    root = tk.Tk()
+    campo_minado = CampoMinado(root, 8, 8, 10)
+    campo_minado.root.destroy = Mock()
+    with patch("tkinter.messagebox.askquestion", return_value="no")as mock_askquestion:
+       
+        campo_minado.game_over()
+    
+    
+    mock_askquestion.assert_called_once_with("Fim de Jogo", "Você perdeu!\nDeseja jogar novamente ou sair?")
+    
+   
+    campo_minado.root.destroy.assert_called_once()
 

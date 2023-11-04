@@ -2,7 +2,12 @@ import pytest
 import tkinter as tk
 
 from src.campo_minado import CampoMinado
-  
+
+
+@pytest.fixture
+def root():
+    return tk.Tk()
+
 
 
 def obter_combinacoes_dimensoes():
@@ -15,7 +20,7 @@ def obter_combinacoes_dimensoes():
     return dimensoes.items()
 
 @pytest.mark.parametrize("nivel, dimensoes", obter_combinacoes_dimensoes())
-def test_criar_linhas_tabuleiro(nivel, dimensoes):
+def test_criar_linhas_tabuleiro(nivel, dimensoes,root):
     linhas, colunas = dimensoes
     campo_minado = CampoMinado(None, linhas, colunas, 10)  
 

@@ -143,7 +143,6 @@ def test_tabuleiro_sem_bombas_facil():
     campo_minado = CampoMinado(None, 8, 8, 0)
     campo_minado.criar_tabuleiro()
 
-    
     for linha in campo_minado.tabuleiro:
         for celula in linha:
             assert celula != -1

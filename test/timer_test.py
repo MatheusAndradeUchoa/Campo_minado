@@ -11,8 +11,8 @@ def test_atualizar_tempo():
     
     campo_minado.atualizar_tempo(timer_label)
     
-    # Aguarde um pouco (por exemplo, 2 segundos) para garantir que o texto tenha sido atualizado
+    
     time.sleep(2)
     
-    # Agora, verifique se o texto foi atualizado corretamente
+    
     assert timer_label.cget("text") == 'Tempo: 2' 

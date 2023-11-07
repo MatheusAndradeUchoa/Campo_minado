@@ -1,121 +1,77 @@
-# Campo_minado
+# Campo minado
 
-# Requisitos
+## Tópicos
 
-## R1: Inicialização do Jogo
-O jogo deve ser inicializado com um tabuleiro em três dimensões:
-- R1.1 - Fácil (8x8)
-- R1.2 - Intermediário (8x8)
-- R1.3 - Difícil (8x8)
+- [Apresentando o jogo](#apresentando-o-jogo)
 
-### Testes
-- Teste: Criar tabuleiro nas dimensões corretas
-- Teste: Criar tabuleiro tamanho inválido
 
-O número de bombas no tabuleiro também deve ser configurável.
-- Fácil: 10 bombas
-- Intermediário: 30 bombas
-- Difícil: 100 bombas
+- [Como rodar o projeto?](#como-rodar-o-projeto)
 
-## R2: Geração Aleatória de Bombas
-- O jogo deve gerar bombas aleatoriamente no tabuleiro no início de cada partida.
+- [Como consigo executar  os testes?](#como-executar-os-testes)
 
-- O número de bombas geradas deve corresponder ao número configurado.
+- [Qunatidade de testes](#quantidade-de-testes)
 
-## R4: Revelação de Células
-- O jogador pode clicar em uma célula para revelar seu conteúdo.
+- [Requisitos e casos de testes](./requisitos.md)
 
-- Se a célula contiver uma bomba, o jogo deve terminar, e o jogador perde.
+- [Tecnicas](./Tecnicas.md)
 
-## R5: Contagem de Bombas Vizinhas
- - O jogo deve calcular e exibir a quantidade de bombas vizinhas a cada célula não contendo uma bomba.
 
-## R6: Vitória
- - O jogador vence o jogo quando todas as células seguras forem reveladas.
 
-## R7: Reiniciar o Jogo
- - O jogo deve permitir ao jogador reiniciar a partida após vitória ou derrota.
+## Apresentando o jogo
 
-## R8: Contagem de Tempo
-- O jogo deve contar o tempo desde o início da partida até a sua conclusão (vitória ou derrota).
 
-## R9: Bandeiras
-- O jogador pode colocar bandeiras em células para indicar onde acredita que há bombas.
+### Jogo fácil
 
-## R10: Remover Bandeiras
-- O jogador pode remover bandeiras.
+![Tela do jogo nom modo fácil.](./img/facil.png)
 
-## R10: Atualização da Contagem de Bombas
-- A contagem de bombas vizinhas deve ser atualizada após a revelação de células.
+### Jogo intermediário
 
-## R11: Revelação Automática de Áreas Vazias
-- Se o jogador revelar uma célula vazia, todas as células vizinhas também devem ser reveladas automaticamente até encontrar células com contagem de bombas vizinhas.
+![Tela do jogo nom modo fácil.](./img/medio.png)
 
-## R12: Finalização do Jogo ao Clicar em Bomba
-- Se o jogador clicar em uma célula contendo uma bomba, o jogo deve finalizar e mostrar todas as bombas no tabuleiro.
+### Jogo Difícil
+![Tela do jogo nom modo fácil.](./img/dificil.png)
 
-## R13: Opção de Reiniciar Durante o Jogo
-- O jogador deve ter a opção de reiniciar o jogo a qualquer momento durante a partida.
 
-## R14: Opção de Sair do Jogo
-- O jogador deve ter a opção de sair do jogo a qualquer momento.
 
-## R15: Mensagem de Vitória
-- Quando o jogador vence o jogo, uma mensagem de vitória deve ser exibida.
+</p>
 
-## R16: Mensagem de Derrota
-- Quando o jogador perde o jogo, uma mensagem de derrota deve ser exibida.
+## :hammer: Como Jogar
 
-## R17: Derrota ao Revelar Bomba
-- O jogo deve verificar se uma célula com uma bomba foi revelada, encerrando a partida e exibindo uma mensagem de derrota.
+- `Funcionalidade 1`: O botão esquerdo do mouse serve para revelar células
+- `Funcionalidade 2`: O botão direito do mouse serve para adicionar e remover bandeiras
+- `Funcionalidade 3`: Antes de iniciar a partida, as informações de nível, número de bombas e bandeiras é apresentada
 
-# Interface
+## Como rodar o Projeto?
 
-## R18: Seleção de Nível de Dificuldade
-- O jogador deve ser capaz de escolher o nível de dificuldade entre Fácil, Intermediário e Difícil.
 
-- Os níveis de dificuldade são definidos por diferentes dimensões do tabuleiro e números de bombas.
 
-## R19: Início de um Novo Jogo
-- Ao selecionar um nível de dificuldade, um novo jogo deve ser iniciado com base nas dimensões e bombas correspondentes ao nível selecionado.
+### Entre na raiz do projeto 
 
-## R20: Finalização de um Jogo
-- O jogador deve ter a opção de sair do jogo durante uma partida em andamento.
-- Ao confirmar a saída, a aplicação deve ser fechada.
+```sh
+cd campo-minado
+```
 
-## R21: Visualização das Bombas
-- Após uma derrota, o jogo deve exibir a localização de todas as bombas no tabuleiro.
+### Instale todas as dependências
 
-## R22: Revelar célula com botão esquerdo
-- O usuario dever revelar as celulas com botão direito
-## R23: Adicionar e remover bandeira com botão direito
-- Deve ser possivel adicionar e remover bandeira com botão direito
+```sh
+pip3 install -r dependencias.txt
+```
 
-<br><br>
-<br>
+### Execute o jogo já compilado
 
-# Testes
- ## Total  
- ![Total](img/total.png)
+```sh
+py main.py
+```
 
-## 1. Criação de Campo
-![Criação de Campo](img/criar_campo.png)
+## Como executar os testes?
 
-## 2. Relação de Vizinhança
-![Relação de Vizinhança](img/relacao_vizinhos.png)
+### Dentro do diretório do projeto (caminho/campo-minado) execute
 
-## 3. Bandeira
-![Bandeira](img/bandeira.png)
+```sh
+py -m pytest ./test
+```
 
-## 4. Verificações de Bomba
-![Verificações de Bomba](img/verificações_bomba.png)
+## Quantidade de Testes
+- obs: o pytest algumas vezes buga com a interface mas todos teste estão corretos como mostra na imagem
 
-## 5. Game Over
-![Game Over](img/game_over.png)
-
-## 6. Vitória
-![Vitória](img/vitoria.png)
-
-## 7. Revelar Célula
-![Revelar Célula](img/revelar_celula.png)
-
+![Texto Alternativo](./img/testes2.png)

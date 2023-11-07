@@ -29,7 +29,7 @@
 ![Tela do jogo nom modo fácil.](./img/medio.png)
 
 ### Jogo Difícil
-![Tela do jogo nom modo fácil.](./img/dificil.png)
+![Tela do jogo nom modo fácil.](./img/Dificil.png)
 
 
 

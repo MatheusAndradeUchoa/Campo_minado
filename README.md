@@ -35,11 +35,7 @@
 
 </p>
 
-## :hammer: Como Jogar
 
-- `Funcionalidade 1`: O botão esquerdo do mouse serve para revelar células
-- `Funcionalidade 2`: O botão direito do mouse serve para adicionar e remover bandeiras
-- `Funcionalidade 3`: Antes de iniciar a partida, as informações de nível, número de bombas e bandeiras é apresentada
 
 ## Como rodar o Projeto?
 

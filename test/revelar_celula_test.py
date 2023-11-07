@@ -1,13 +1,14 @@
 
 import pytest
 from unittest.mock import MagicMock, patch
-
+import tkinter as tk
 from src.campo_minado import CampoMinado
 
 
 def test_revelar_celula_sem_bombas_adjacentes():
-    #root = tkinter.Tk()
-    campo_minado = CampoMinado(None, 8, 8, 10)
+    root = tk.Tk()
+    root.withdraw()
+    campo_minado = CampoMinado(root, 8, 8, 10)
 
     
     campo_minado.revelar_adjacentes = MagicMock()
@@ -21,7 +22,9 @@ def test_revelar_celula_sem_bombas_adjacentes():
     campo_minado.revelar_adjacentes.assert_called_with(1, 1)
 
 def test_revelar_celula_sem_bomba_com_vizinhos():
-    campo_minado = CampoMinado(None, 8, 8, 10)
+    root = tk.Tk()
+    root.withdraw()
+    campo_minado = CampoMinado(root, 8, 8, 10)
     campo_minado.revelar_adjacentes = MagicMock()
 
     for i in range(campo_minado.linhas):
@@ -34,7 +37,9 @@ def test_revelar_celula_sem_bomba_com_vizinhos():
     assert campo_minado.botoes[1][1]['text'] == '0'
 
 def test_revelar_celula_sem_bomba_com_vizinhos_intermediario():
-    campo_minado = CampoMinado(None, 10, 16, 30)
+    root = tk.Tk()
+    root.withdraw()
+    campo_minado = CampoMinado(root, 10, 16, 30)
     campo_minado.revelar_adjacentes = MagicMock()
 
     for i in range(campo_minado.linhas):
@@ -57,7 +62,9 @@ def test_revelar_celula_sem_bomba_com_vizinhos_intermediario():
 ])
  
 def test_revelar_celula_chama_game_over(coordenada):
-    campo_minado = CampoMinado(None, 8, 8, 0)
+    root = tk.Tk()
+    root.withdraw()
+    campo_minado = CampoMinado(root, 8, 8, 0)
     x,y = coordenada
     campo_minado.tabuleiro[x][y] = -1
     
@@ -76,7 +83,9 @@ def test_revelar_celula_chama_game_over(coordenada):
 ])
  
 def test_revelar_celula_chama_game_over_intermediario(coordenada):
-    campo_minado = CampoMinado(None, 10, 16, 0)
+    root = tk.Tk()
+    root.withdraw()
+    campo_minado = CampoMinado(root, 10, 16, 0)
     x,y = coordenada
     campo_minado.tabuleiro[x][y] = -1
     
@@ -95,7 +104,9 @@ def test_revelar_celula_chama_game_over_intermediario(coordenada):
 ])
  
 def test_revelar_celula_chama_game_over_dificl(coordenada):
-    campo_minado = CampoMinado(None, 24, 24, 0)
+    root = tk.Tk()
+    root.withdraw()
+    campo_minado = CampoMinado(root, 24, 24, 0)
     x,y = coordenada
     campo_minado.tabuleiro[x][y] = -1
     

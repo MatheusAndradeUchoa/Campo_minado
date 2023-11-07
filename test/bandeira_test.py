@@ -58,7 +58,7 @@ def test_remover_bandeira(linha, coluna, nivel, coordenada):
 
 def test_contador_bandeiras_inicial():
     root = tk.Tk()
-    campo_minado = CampoMinado(root, 8, 8, 10)
+    campo_minado = CampoMinado(None, 8, 8, 10)
 
     assert campo_minado.contador_bandeiras == 0
 
@@ -93,7 +93,7 @@ def test_limite_contador_bandeiras():
    
 def test_adicionar_bandeira():
     root = tk.Tk()
-    campo_minado = CampoMinado(root, 8, 8, 10)
+    campo_minado = CampoMinado(None, 8, 8, 10)
 
     
     campo_minado.alternar_bandeira(2, 2)

@@ -1,3 +1,4 @@
+import tkinter as tk
 from unittest import mock
 import pytest
 from src.campo_minado import CampoMinado
@@ -72,4 +73,22 @@ def test_game_over_dificil(posicao):
 
     
     assert campo_minado.botoes[posicao[0]][posicao[1]]['text'] == 'X'
+
+
+def test_mostrar_bombas_apos_derrota():
+    root = tk.Tk()
+    campo_minado = CampoMinado(None, 8, 8, 10)
+
+   
+    bomb_positions = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (0, 7), (7, 0)]
+    campo_minado.criar_tabuleiro(bomb_positions=bomb_positions)
+
+   
+    campo_minado.game_over(mostrar_interface=False)
+
+    for x in range(8):
+        for y in range(8):
+            assert campo_minado.botoes[x][y]['state'] == 'disabled'
+
+    root.destroy()
 

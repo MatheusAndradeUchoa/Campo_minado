@@ -32,13 +32,17 @@ class Jogo:
         if user_choice == 'yes':
             self.root.destroy()
         else:
-            self.reiniciar_jogo() 
+          for widget in self.root.winfo_children():
+            widget.destroy()
+          self.mostrar_tela_inicial()
             
     def reiniciar_jogo(self):
         for widget in self.root.winfo_children():
             widget.destroy()
 
         CampoMinado.criar_tabuleiro()
+        
+        
 
     def ver_historico(self):
         messagebox.showinfo("Histórico de Resultados", "Aqui está o histórico de resultados:\n\n"

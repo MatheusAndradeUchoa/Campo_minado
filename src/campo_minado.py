@@ -12,6 +12,8 @@ class CampoMinado:
         self.num_bombas = num_bombas
         self.contador_bandeiras = 0
         self.verificar_dimensoes()
+        self.contador_vitoria = 0
+        self.contador_derrota = 0
         self.tabuleiro = [[0] * colunas for _ in range(linhas)]
         self.botoes = [[None] * colunas for _ in range(linhas)]
         self.criar_tabuleiro()
@@ -111,7 +113,7 @@ class CampoMinado:
 
     def on_right_click(self, x, y):
         if self.root.state() == 'normal':
-            self.alternar_bandeira(x, y)
+           self.alternar_bandeira(x, y)
                 
     def on_button_click(self, x, y):
         if self.root.state() == 'normal':
@@ -145,6 +147,7 @@ class CampoMinado:
             for y in range(self.colunas):
                 if self.tabuleiro[x][y] != -1 and self.botoes[x][y]['state'] != 'disabled':
                     return False
+        self.contador_vitoria += 1
         return True
 
     def vitoria(self):
@@ -159,6 +162,7 @@ class CampoMinado:
             for y in range(self.colunas):
                 if self.tabuleiro[x][y] == -1:
                     self.botoes[x][y]['text'] = 'X'
+                    self.contador_derrota += 1
                 self.botoes[x][y]['state'] = 'disabled'
                 
         if mostrar_interface:
@@ -167,3 +171,6 @@ class CampoMinado:
                 self.reiniciar_jogo()
             else:
                 self.root.destroy()
+    
+    def contador_vitoria(self):
+        return self.contador_vitoria

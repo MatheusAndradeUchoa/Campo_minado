@@ -15,6 +15,8 @@
 
 - [Tecnicas](./Tecnicas.md)
 
+- [Testes Rodando](#testes-rodando)
+
 
 
 ## Apresentando o jogo
@@ -71,3 +73,7 @@ py -m pytest ./test
 - obs: o pytest algumas vezes buga com a interface mas todos teste estão corretos como mostra na imagem
 
 ![Texto Alternativo](./img/testes2.png)
+
+## Testes Rodando
+
+![Texto alternativo](./img/testes_rodando.gif)

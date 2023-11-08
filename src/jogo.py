@@ -28,13 +28,14 @@ class Jogo:
 
 
     def on_close(self):
-        user_choice = messagebox.askquestion("Sair", "Deseja sair do jogo?")
+        user_choice = messagebox.askquestion("Sair", "voltar para o menu?")
         if user_choice == 'yes':
-            self.root.destroy()
-        else:
           for widget in self.root.winfo_children():
             widget.destroy()
           self.mostrar_tela_inicial()
+           
+        else:
+           self.root.destroy()
             
     def reiniciar_jogo(self):
         for widget in self.root.winfo_children():

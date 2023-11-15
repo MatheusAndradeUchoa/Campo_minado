@@ -1,171 +1,206 @@
-## Requisitos
 
-### R1: Inicialização do Jogo
-- O jogo deve ser inicializado com um tabuleiro em três dimensões:
-  - R1.1 - Fácil (8x8)
-  - R1.2 - Intermediário (8x8)
-  - R1.3 - Difícil (8x8)
 
-#### Testes de Validação
-- Teste: Criar tabuleiro nas dimensões corretas
-  - Objetivo: Garantir que o tabuleiro seja criado com as dimensões corretas.
-- Teste: Criar tabuleiro tamanho inválido
-  - Objetivo: Verificar se o jogo lida adequadamente com tamanhos de tabuleiro inválidos.
+# Requisitos Funcionais:
 
-### R2: Geração Aleatória de Bombas
-- O jogo deve gerar bombas aleatoriamente no tabuleiro no início de cada partida.
-- O número de bombas geradas deve corresponder ao número configurado.
+## R1: Inicialização do Jogo
+O jogo deve ser inicializado com um tabuleiro em três dimensões.
+- R1.1: (8x8)
+- R1.2: (10x16)
+- R1.3: (24x24)
 
-#### Testes de Validação e Integração
+### Testes:
+- teste criar tabuleiro nas dimensões corretas
+- facil
+- medio 
+- dificl
+- invalidas 
+- testes criar tabuleiro tamanho invalido 
+
+
+## R2: Geração Aleatória de Bombas
+O jogo deve gerar bombas aleatoriamente no tabuleiro no início de cada partida.
+- R2.1: 10 bombas
+- R2.2: 30 bombas
+- R2.3: 100 bombas
+
+### Testes:
 - Teste: Verificar se o número de bombas geradas corresponde ao número configurado no modo fácil
 - Teste: Verificar se o número de bombas geradas corresponde ao número configurado no modo intermediário
 - Teste: Verificar se o número de bombas geradas corresponde ao número configurado no modo difícil
-- Teste: Posições das bombas no modo intermediário
-- Teste: Posições das bombas no modo difícil
-- Teste: Posicionar bombas em posição inválida no modo fácil
-- Teste: Posicionar bombas em posição inválida no modo intermediário
-- Teste: Posicionar bombas em posição inválida no modo difícil
-- Teste: Tabuleiro sem bombas no modo fácil
-- Teste: Tabuleiro sem bombas no modo intermediário
-- Teste: Tabuleiro sem bombas no modo difícil
-- Teste: Tabuleiro apenas com bombas
-- Teste: Número de bombas maior que o esperado
-- Teste: Número de bombas menor que o esperado
-- Teste: Posições válidas das bombas nas linhas
-- Teste: Posições válidas das bombas nas colunas
+- test_posicoes_bombas__modo_intermediario
+- test_posicoes_bombas__modo_dificil
+- test_posicionar_bombas_posicao_invalida_modo_facil
+- test_posicionar_bombas_posicao_invalida_modo_intermediario
+- test_posicionar_bombas_posicao_invalida_modo_dificil
+- test_tabuleiro_sem_bombas_facil
+- test_tabuleiro_sem_bombas_intermediario
+- test_tabuleiro_sem_bombas_dificl test_tabuleiro_apenas_bombas
+- test_numero_bombas_maior_que_esperado
+- test_numero_bombas_menor_que_esperado
+- test_posicoes_validas_das_bombas_linha
+- test_posicoes_validas_das_bombas_coluna
 
-### R4: Revelação de Células
-- O jogador pode clicar em uma célula para revelar seu conteúdo.
-- Se a célula contiver uma bomba, o jogador perde.
 
-#### Testes de Unidade
-- Teste: Revelar célula com bomba
-- Teste: Revelar célula vazia
-- Teste: Revelar célula com bomba no modo intermediário
-- Teste: Revelar célula vazia no modo intermediário
-- Teste: Revelar célula com bomba no modo difícil
-- Teste: Revelar célula vazia no modo difícil
+## R4: Revelação de Células
+O jogador pode clicar em uma célula para revelar seu conteúdo. Se a célula contiver uma bomba, o jogo deve terminar, e o jogador perde.
 
-### R6: Vitória
-- O jogador vence o jogo quando todas as células seguras forem reveladas.
+### Testes:
+- test_revelar_celula_com_bomba 
+- test_revelar_celula_vazia 
+- test_revelar_celula_com_bomba_intermediario 
+- test_revelar_celula_vazia_intermediario 
+- test_revelar_celula_com_bomba_dificil 
+- test_revelar_celula_vazia_difi
 
-#### Testes de Unidade
-- Teste: Verificar vitória
-- Teste: Verificar vitória no modo intermediário
-- Teste: Verificar vitória no modo difícil
-- Teste: Verificar vitória no modo difícil sem bombas no modo fácil
-- Teste: Verificar vitória no modo difícil sem bombas no modo intermediário
-- Teste: Verificar vitória no modo difícil sem bombas no modo difícil
-- Teste: Verificar vitória no modo difícil apenas com bombas no modo fácil
-- Teste: Verificar vitória no modo difícil apenas com bombas no modo intermediário
-- Teste: Verificar vitória no modo difícil apenas com bombas no modo difícil
+## R6: Vitória
+O jogador vence o jogo quando todas as células seguras forem reveladas.
 
-### R7: Reiniciar o Jogo
+### Testes:
+- test_verificar_vitoria
+- test_verificar_vitoria_intermediario
+- test_verificar_vitoria_dificil
+- test_verificar_vitoria_dificil_sem_bombas_facil
+- test_verificar_vitoria_dificil_sem_bombas_intermediario
+- test_verificar_vitoria_dificil_sem_bombas_dificil
+- test_verificar_vitoria_dificil_apenas_bombas_facil
+- test_verificar_vitoria_dificil_apenas_bombas_intermediario
+- test_verificar_vitoria_dificil_apenas_bombas_dificil
 
-#### Testes de Regressão
-- Teste: Reiniciar o jogo
 
-### R8: Contagem de Tempo
+## R7: Reiniciar o Jogo
+O jogo deve permitir ao jogador reiniciar a partida após vitória ou derrota.
 
-#### Testes de Desempenho
-- Teste: Tempo em jogo
+## R8: Contagem de Tempo
+O jogo deve contar o tempo desde o início da partida até a sua conclusão (vitória ou derrota).
 
-### R9: Adicionar Bandeiras
+### Teste:
+- Testar o registro correto do tempo durante a partida
 
-#### Testes de Usabilidade
-- Teste: Verificar se o jogador pode adicionar uma bandeira em uma célula
-- Teste: Verificar se é possível adicionar bandeira em diferentes níveis e posições
+## R9: Adicionar Bandeiras
+O jogador pode colocar bandeiras em células para indicar onde acredita que há bombas.
 
-### R10: Remover Bandeiras
+### Testes:
+- Testar se o jogador pode colocar uma bandeira em uma célula
+- Testar adição de bandeira em diferentes níveis e posições
 
-#### Testes de Usabilidade
-- Teste: Verificar se o jogador pode remover uma bandeira de uma célula
-- Teste: Verificar se é possível remover bandeira em diferentes níveis e posições
-- Teste: Contador de bandeira
+## R10: Remover Bandeiras
+O jogador pode remover bandeiras.
 
-### R11: Atualização da Contagem de Bombas
+### Testes:
+- Testar se o jogador pode remover uma bandeira de uma célula
+- Testar remoção de bandeira em diferentes níveis e posições
 
-#### Testes de Caixa Branca
-- Teste: Calcular vizinhos sem bomba
-- Teste: Calcular vizinhos sem bomba no modo intermediário
-- Teste: Calcular vizinhos sem bomba no modo difícil
-- Teste: Calcular vizinhos no modo fácil com bombas (1-8 vizinhos)
-- Teste: Calcular vizinhos no modo intermediário com bombas (1-8 vizinhos)
-- Teste: Calcular vizinhos no modo difícil com bombas (1-8 vizinhos)
-- Teste: Verificar se não há vizinhos com bombas no canto superior esquerdo
-- Teste: Verificar se não há vizinhos com bombas no canto superior direito
-- Teste: Verificar se não há vizinhos com bombas no canto inferior esquerdo
-- Teste: Verificar se não há vizinhos com bombas no canto inferior direito
-- Teste: Verificar se não há vizinhos com bombas no centro
+## R11: Atualização da Contagem de Bombas
+A contagem de bombas vizinhas deve ser atualizada após a revelação de células.
 
-### R12: Revelação Automática de Áreas Vazias
+### Testes:
+- test_calcular_vizinhos_sem_bomba
+- test_calcular_vizinhos_sem_bomba_intermediario
+- test_calcular_vizinhos_sem_bomba_dificil
+- test_calcular_vizinhos_facil_com_bombas(1-8 vizinhos)
+- test_calcular_vizinhos_intermediario_com_bombas(1-8 vizinhos)
+- test_calcular_vizinhos_dificil_com_bombas(1-8 vizinhos)
+- 
+- Canto superior esquerdo: Verificar se não há vizinhos com bombas.
+- Canto superior direito: Verificar se não há vizinhos com bombas.
+- Canto inferior esquerdo: Verificar se não há vizinhos com bombas.
+- Canto inferior direito: Verificar se não há vizinhos com bombas.
+- o centro: Verificar se não há vizinhos com bombas.
 
-#### Testes de Caixa Branca
+
+## R12: Revelação Automática de Áreas Vazias
+Se o jogador revelar uma célula vazia, todas as células vizinhas também devem ser reveladas automaticamente.
+
+### Testes:
 - Teste: Revelar célula sem bomba com vizinhos no modo fácil
 - Teste: Revelar célula sem bomba com vizinhos no modo intermediário
 - Teste: Revelar célula sem bomba com vizinhos no modo Difícil
 
-### R13: Finalização do Jogo ao Clicar em Bomba
 
-#### Testes de Caixa Branca
-- Teste: Finalizar o jogo ao clicar em uma célula com bomba no modo fácil
-- Teste: Finalizar o jogo ao clicar em uma célula com bomba no modo intermediário
-- Teste: Finalizar o jogo ao clicar em uma célula com bomba no modo difícil
+## R13: Finalização do Jogo ao Clicar em Bomba
+Se o jogador clicar em uma célula contendo uma bomba, o jogo deve finalizar e mostrar todas as bombas no tabuleiro.
 
-### R14: Opção de Reiniciar Durante o Jogo
+### Testes:
+- Testar finalização do jogo ao clicar em célula com bomba em modos fácil, intermediário e difícil
 
-#### Testes de Regressão
-- Teste: Reiniciar o jogo
+## R14: Opção de Sair do Jogo
+O jogador deve ter a opção de sair do jogo a qualquer momento.
 
-### R15: Opção de Sair do Jogo
+### Teste:
+- Testar saída do jogo durante uma partida em andamento
 
-#### Testes de Regressão
-- Teste: Sair do jogo
+## R15: Mensagem de Vitória
+Quando o jogador vence o jogo, uma mensagem de vitória deve ser exibida.
 
-### R16: Mensagem de Vitória
+### Testes:
+- Testar exibição da mensagem de vitória com e sem bombas
 
-#### Testes de Aceitação do Usuário
-- Teste: Exibir mensagem de vitória
-- Teste: Não exibir mensagem de vitória
+## R16: Mensagem de Derrota
+Quando o jogador perde o jogo, uma mensagem de derrota deve ser exibida.
 
-### R17: Mensagem de Derrota
+### Testes:
+- Testar exibição da mensagem de derrota ao clicar em bomba nos modos fácil, intermediário e difícil
 
-#### Testes de Aceitação do Usuário
-- Teste: Exibir mensagem de derrota
-- Teste: Não exibir mensagem de derrota
+## R17: Derrota ao Revelar Bomba
+O jogo deve verificar se uma célula com uma bomba foi revelada, encerrando a partida e exibindo uma mensagem de derrota.
 
-### R18: Derrota ao Revelar Bomba
+### Testes:
+- Testar derrota ao revelar bomba nos extremos do tabuleiro e no centro
 
-#### Testes de Aceitação do Usuário
-- Teste: Verificar derrota nos extremos do tabuleiro (cantos superiores e inferiores, centro)
+## R18: Não deve ser possível clicar em área já revelada.
+Testar se é impossível clicar em uma célula já revelada.
 
-### Interface R18: Seleção de Nível de Dificuldade
+### Testes:
+- Testar impossibilidade de clicar em células já reveladas nos modos fácil, intermediário e difícil
 
-#### Testes de Aceitação do Usuário
-- Teste: Iniciar jogo no modo fácil
-- Teste: Iniciar jogo no modo intermediário
-- Teste: Iniciar jogo no modo difícil
+## R19: Não deve ser possível adicionar bandeira em uma área já revelada.
+Testar se é impossível adicionar uma bandeira em uma célula já revelada.
 
-### R19: Início de um Novo Jogo
+### Testes:
+- Testar impossibilidade de adicionar bandeira em células já reveladas nos modos fácil, intermediário e difícil
 
-#### Testes de Aceitação do Usuário
-- Teste: Iniciar um novo jogo
+# Requisitos de Interface:
 
-### R20: Finalização de um Jogo
+## R25: Seleção de Nível de Dificuldade
+1.1 Selecionar Fácil
+1.2 Selecionar Médio
+1.3 Selecionar Difícil
 
-#### Testes de Aceitação do Usuário
-- Teste: Sair do jogo
+### Testes:
+- Testar a seleção de níveis Fácil, Intermediário e Difícil e verificar se o tabuleiro é configurado corretamente.
 
-### R21: Visualização das Bombas
+## R26: Início de um Novo Jogo
+- Testar o início de um novo jogo após selecionar um nível de dificuldade.
 
-#### Testes de Aceitação do Usuário
-- Teste: Mostrar localização das bombas após derrota
+## R27: Finalização de um Jogo
+- Testar a finalização de um jogo durante uma partida em andamento.
 
-### R22: Revelar célula com botão esquerdo
+## R28: Revelar Célula com Botão Esquerdo
+- Testar a revelação de células ao clicar com o botão esquerdo do mouse.
 
-### R23: Adicionar e remover bandeira com botão direito
+## R29: Adicionar Bandeira com Botão Direito
+- Testar a adição de bandeira ao clicar com o botão direito do mouse.
 
-### R24: Contador de bandeira
+## R30: Deve Aparecer na Tela a Quantidade de Bandeira
+- Testar se o contador de bandeiras é atualizado adequadamente.
 
-#### Testes de Usabilidade
-- Teste: Contador de bandeira
+## R31: Botão "Reiniciar" no Pop-up de Vitória
+- Testar o reinício do jogo ao clicar no botão "Reiniciar" após a vitória.
+
+## R32: Botão "Sair" no Pop-up de Vitória
+- Testar o fechamento da aplicação ao clicar no botão "Sair" após a vitória.
+
+## R33: Botão "Reiniciar" no Pop-up de Derrota
+- Testar o reinício do jogo ao clicar no botão "Reiniciar" após a derrota.
+
+## R34: Botão "Sair" no Pop-up de Derrota
+- Testar o fechamento da aplicação ao clicar no botão "Sair" após a derrota.
+
+## R35: Clicar para Voltar ao Menu
+- Testar se é apresentada uma mensagem ao tentar fechar a janela do jogo.
+
+## R36: Bandeiras Iniciais Igual a Zero
+- Testar se a contagem inicial de bandeiras é zero no início do jogo.
+
+## R37: Atualizar Contador
+- A interface deve atualizar o contador de bandeira.

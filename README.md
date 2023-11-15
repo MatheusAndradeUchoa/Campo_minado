@@ -13,7 +13,7 @@
 
 - [Requisitos e casos de testes](./requisitos.md)
 
-- [Tecnicas](./Tecnicas.md)
+- [Tecnicas Utilizadas](./Tecnicas_Utilizadas.md)
 
 - [Testes Rodando](#testes-rodando)
 

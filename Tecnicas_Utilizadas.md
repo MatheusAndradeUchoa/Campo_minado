@@ -41,6 +41,10 @@
 
 - **Uso:** Utilizando Análise de Valor Limite, testamos os limites dos cenários de vitória para garantir que o sistema reconheça corretamente quando o jogador vence, independentemente do modo de dificuldade escolhido.
 
+## Limite de Vizinhos de Bombas:
+
+- **Uso:** Testar o comportamento do jogo nos limites da contagem de vizinhos de bombas em diferentes regiões do tabuleiro. Este conjunto de testes foca nos extremos da contagem de vizinhos de bombas em células específicas. Inclui testes para o número máximo e mínimo de vizinhos com bombas nos cantos do tabuleiro, no centro
+
 ## Game over - Sim e Não:
 
 - **Uso:** Aplicamos Análise de Valor Limite para explorar situações extremas de vitória e derrota, garantindo que o sistema responda conforme o esperado em ambos os resultados.

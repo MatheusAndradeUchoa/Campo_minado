@@ -38,6 +38,8 @@ Bem, tentei adicionar o build com gradle, mas não consegui a então as únicas 
 
 - [Tecnicas Utilizadas](./Tecnicas_Utilizadas.md)
 
+ - [Todos os Teste](./Testes.md)
+
 - [Testes Rodando](#testes-rodando)
 
 

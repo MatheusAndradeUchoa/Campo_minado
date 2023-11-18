@@ -1,3 +1,26 @@
+
+###
+
+O que faltou                       | O que foi feito
+-----------------------------------|---------------------------------
+❌ Tecnicas utilizadas            | ✅ Tecnicas utilizadas          
+❌ Agrupar                        | ✅ Agrupar
+❌ Descrição do uso das tecnicas  | ✅ Descrição do uso das tecnicas
+❌ requisitos = 30                | ✅ Requisitos = 40
+❌ Gradle                         | ❌ Gradle 
+
+
+<h1> ✅ </h1> 
+
+## Aqui voce  encontra as  alterações
+
+ - [Tecnicas Utilizadas](./Tecnicas_Utilizadas.md)
+ - [Requisitos e casos de testes](./requisitos.md)
+ - [Agrupamento - Testes separados por tecnicas](./testes_por_tecnica.md)
+
+
+Bem, tentei adicionar o build com gradle, mas não consegui a então as únicas alterações que fiz foi na documentação em relação às técnicas e a requisitos que já tinha no meu projeto, mas como eu não tava com muito tempo acabei esquecendo.    
+
 # Campo minado
 
 ## Tópicos
@@ -9,7 +32,7 @@
 
 - [Como consigo executar  os testes?](#como-executar-os-testes)
 
-- [Qunatidade de testes](#quantidade-de-testes)
+- [Quantidade de testes](#quantidade-de-testes)
 
 - [Requisitos e casos de testes](./requisitos.md)
 
@@ -58,7 +81,7 @@ pip3 install -r dependencias.txt
 ### Execute o jogo já compilado
 
 ```sh
-py main.py
+pip3 main.py
 ```
 
 ## Como executar os testes?
@@ -66,7 +89,7 @@ py main.py
 ### Dentro do diretório do projeto (caminho/campo-minado) execute
 
 ```sh
-py -m pytest ./test
+pip3 -m pytest ./test
 ```
 
 ## Quantidade de Testes

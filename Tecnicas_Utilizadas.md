@@ -1,14 +1,10 @@
 ## Aqui estão as descrição do uso das tecnicas 
 
-## Topicos
 ## Tópicos
 
-- [Testes separados por tecnicas](./testes_por_tecnica.md)
+- [Agrupamento - Testes separados por tecnicas](./testes_por_tecnica.md)
 
-
-
-
-## Particionamento de Equivalência
+## Classe de Equivalência
 
 ### Criar tabuleiro nas dimensões corretas:
 - **Uso:** Testando diferentes tamanhos de tabuleiros (pequeno, médio, grande) para garantir que a criação do tabuleiro funcione corretamente em cada categoria.
@@ -20,13 +16,13 @@
 - **Uso:** Ao testar diferentes modos de dificuldade (fácil, intermediário, difícil), garantimos que o jogo reaja corretamente quando alguém tenta posicionar bombas em lugares não permitidos.
 
 ### Tabuleiro sem bombas nos diferentes modos de dificuldade:
-- **Uso:** Utilizando Particionamento de Equivalência, verificamos se o jogo se comporta conforme esperado quando o tabuleiro não contém bombas, em diferentes níveis de dificuldade.
+- **Uso:** Utilizando Classe de Equivalência, verificamos se o jogo se comporta conforme esperado quando o tabuleiro não contém bombas, em diferentes níveis de dificuldade.
 
 ### Tabuleiro apenas com bombas:
 - **Uso:** Testando a resposta do jogo quando o tabuleiro é composto apenas por bombas.
 
 ### Posições válidas das bombas nas linhas e colunas:
-- **Uso:** Ao testar posições válidas das bombas nas linhas e colunas, utilizamos Particionamento de Equivalência para verificar a validade das posições, abrangendo diferentes orientações no tabuleiro.
+- **Uso:** Ao testar posições válidas das bombas nas linhas e colunas, utilizamos Classe de Equivalência para verificar a validade das posições, abrangendo diferentes orientações no tabuleiro.
 
 ## Análise de Valor Limite
 

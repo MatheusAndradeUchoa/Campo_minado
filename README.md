@@ -19,7 +19,7 @@ O que faltou                       | O que foi feito
  - [Agrupamento - Testes separados por tecnicas](./testes_por_tecnica.md)
 
 
-Bem, tentei adicionar o build com gradle, mas não consegui a então as únicas alterações que fiz foi na documentação em relação às técnicas e a requisitos que já tinha no meu projeto, mas como eu não tava com muito tempo acabei esquecendo.    
+Bem, tentei adicionar o build com gradle, mas não consegui a então as únicas alterações que fiz foi na documentação em relação às técnicas e a requisitos que já tinha no meu projeto, mas como eu não tava com muito tempo acabei esquecendo de colocar na primeira entrega.    
 
 # Campo minado
 

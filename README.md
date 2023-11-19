@@ -79,11 +79,16 @@ cd campo-minado
 ```sh
 pip3 install -r dependencias.txt
 ```
+ou
+
+```sh
+pip install -r dependencias.txt
+```
 
 ### Execute o jogo já compilado
 
 ```sh
-pip3 main.py
+python main.py
 ```
 
 ## Como executar os testes?
@@ -91,7 +96,7 @@ pip3 main.py
 ### Dentro do diretório do projeto (caminho/campo-minado) execute
 
 ```sh
-pip3 -m pytest ./test
+python -m pytest ./test
 ```
 
 ## Quantidade de Testes

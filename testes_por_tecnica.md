@@ -1,5 +1,5 @@
 
-### Particionamento de Equivalência:
+### Classe de Equivalência:
 
 #### Tabuleiro nas dimensões corretas:
 1. **Teste 1:** Tabuleiro pequeno (4x4).
